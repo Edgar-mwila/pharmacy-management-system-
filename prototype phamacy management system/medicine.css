@@ -46,7 +46,7 @@ body{
 .header .logo img{
     margin-top: 5px;
     height: 95%;
-    width: 80%;
+    width: 30%;
     display: inline-block;
 }
 
@@ -98,6 +98,24 @@ body{
     align-items: center;
     box-shadow: var(--box-shadow);
 }
+
+.header .options{
+    border: 1px solid;
+    position: absolute;
+    top: 160%;
+    right: 2rem;
+    width: 5rem;
+    height: 5rem;
+    background: #fff;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+}
+
 .header .search-form input{
     height: 100%;
     width: 100%;
@@ -278,6 +296,16 @@ body{
     font-size: 1.5rem;
     padding-bottom: 5%;
     color: #fff;
+}
+
+button{
+    padding: 10px 45px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    background-image: linear-gradient(to right,#649bff,#0070fa,#649bff);
+    border-radius: 10px;
 }
 
 .learn-btn{

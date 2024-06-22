@@ -43,10 +43,21 @@ body{
     z-index: 1000;
     box-shadow: var(--box-shadow);
 }
+
+button{
+    padding: 10px 45px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    background-image: linear-gradient(to right,#649bff,#0070fa,#649bff);
+    border-radius: 10px;
+}
+
 .header .logo img{
     margin-top: 5px;
     height: 95%;
-    width: 80%;
+    width: 30%;
     display: inline-block;
 }
 

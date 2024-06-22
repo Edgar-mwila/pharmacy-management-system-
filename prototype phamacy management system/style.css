@@ -45,7 +45,7 @@ body{
 .header .logo img{
     margin-top: 5px;
     height: 95%;
-    width: 80%;
+    width: 30%;
     display: inline-block;
 }
 
@@ -55,7 +55,7 @@ body{
     padding: 20px;
     color: var(--light-colour);
 }
-
+ 
 .header .headbar a:hover{
     color: #fff;
     background: linear-gradient(120deg,#FAB2FF 40%,#663399);

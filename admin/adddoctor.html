@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="adddoctor.css">
+        <meta charset="utf-8">
+        <title>Doctor</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>    
+        <header class="header">
+            <a href="#" class="logo">
+            <img src="logo.jpg" alt="logo">
+            </a>
+            <nav class="headbar">
+                <a href="report.html">Report</a>
+                <a href="adddoctor.html">Add Doctor</a>
+                <a href="#">Add Medicine</a>
+                <a href="#">Add Pharmacy</a>
+                <a href="#">Add Pharmaceutical company</a>
+            </nav>
+
+            <div class="menubtn">
+                <button> <a href="signin.html">Logout</a></button>
+            </div>
+        </header>
+
+        <section class="top" id="top">
+            <div class="container">
+                <h1 class="heading">TOP SPECIALITES</h1><hr>
+            </div>
+
+            <div class="box-container">
+                <div class="box">
+                    <img src="../prototype phamacy management system/image-20240611T034251Z-001/image/d1.png" alt="">
+                    <h1 class="title">Dermatology</h1>
+
+                    <a href="#" class="btn">Add... </a>
+                </div>
+
+                <div class="box">
+                    <img src="../prototype phamacy management system/image-20240611T034251Z-001/image/d2.png" alt="">
+                    <h1 class="title">General Physician</h1>
+                    >
+
+                    <a href="#" class="btn">Add...</a>
+                </div>
+
+                <div class="box">
+                    <img src="../prototype phamacy management system/image-20240611T034251Z-001/image/d3.png" alt="">
+                    <h1 class="title">Paediatrics</h1>
+
+                    <a href="#" class="btn">Add...</a>
+                </div>
+
+                <div class="box">
+                    <img src="../prototype phamacy management system/image-20240611T034251Z-001/image/d4.png" alt="">
+                    <h1 class="title">Other Doctors</h1>
+
+                    <a href="#" class="btn">Add...</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="bottom" id="bottom">
+            <div class="container">
+            </div>
+            <div class="box-container">
+                <div class="box">
+                    <div class="img-container">
+                        <div class="inner-skew">
+                            <img src="../prototype phamacy management system/image-20240611T034251Z-001/image/d5.png" alt="" style="padding-left: 35px; padding-top: 25px;">
+                        </div>
+                    </div>
+                    <h1 class="title">Covid Consultation</h1>
+                    
+                    <a href="#" class="btn">Add...</a>
+                </div>
+
+                <div class="box">
+                    <div class="img-container">
+                        <div class="inner-skew">
+                            <img src="../prototype phamacy management system/image-20240611T034251Z-001/image/d6.jpg" alt="" style="padding-left: 55px; padding-top: 25px;">
+                        </div>
+                    </div>
+                    <h1 class="title">Dentist</h1>
+                    
+                    <a href="#" class="btn">Add...</a>
+                </div>
+
+                <div class="box">
+                    <div class="img-container">
+                        <div class="inner-skew">
+                            <img src="../prototype phamacy management system/image-20240611T034251Z-001/image/d7.jfif" alt="" style="padding-left: 35px; padding-top: 25px;">
+                        </div>
+                    </div>
+                    <h1 class="title">Cardiology</h1>
+                    
+                    <a href="#" class="btn">Add...</a>
+                </div>
+
+                <div class="box">
+                    <div class="img-container">
+                        <div class="inner-skew">
+                            <img src="../prototype phamacy management system/image-20240611T034251Z-001/image/d8.jpg" alt="" style="padding-left: 35px; padding-top: 25px;">
+                        </div>
+                    </div>
+                    <h1 class="title">Urology</h1>
+                    
+                    <a href="#" class="btn">Add...</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hidden form -->
+        <div id="form-container" style="display: none;">
+            <form id="add-form">
+                <h2>Enter Details</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="specialty">Specialty:</label>
+                <input type="text" id="specialty" name="specialty" required><br><br>
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" required><br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <script>
+            const buttons = document.querySelectorAll('.btn');
+            const formContainer = document.getElementById('form-container');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    formContainer.style.removeProperty('display: none');
+                    formContainer.style.display = 'block';
+                });
+            });
+        </script>
+    </body>
+</html>

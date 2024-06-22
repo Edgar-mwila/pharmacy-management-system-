@@ -1,348 +1,103 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="medicine.css">
-        <meta charset="utf-8">
-        <title>Medicine</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine</title>
+    <link rel="stylesheet" href="medicine.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Noto+Sans:wght@100;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo"><img src="logo.jpg" alt="logo"></a>
+        <nav class="headbar">
+            <a href="index.html">Home</a>
+            <a href="doctor.html">Doctor</a>
+            <a href="medicine.html">Medicine</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        
+        <form class="search-form">
+            <input type="search" id="search-box" placeholder="Type Something...">
+            <label for="search-box" class="fa fa-search"></label>   
+        </form>
+        <div class="options">
+            <i class="fa fa-shopping-cart" id="cart-btn" style="font-size:30px; cursor: pointer;"></i>
+        </div>
+    </header>
 
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    </head>
-    <body>    
-        <header class="header">
-            <a href="#" class="logo">
-            <img src="logo.jpg" alt="logo">
-            </a>
-            <nav class="headbar">
-                <a href="index.html">Home</a>
-                <a href="doctor.html">Doctor</a>
-                <a href="medicine.html">Medicine</a>
-                <a href="services.html">Services</a>
-                <a href="contact.html">Contact</a>
-            </nav>
+    <section class="bottom" id="bottom">
+        <div class="container">
+            <h1 class="heading">MEDICINE</h1><hr>
+        </div>
+        <div class="box-container" id="medicine-products"></div>
+    </section>
 
-            <div class="menubtn">
-                <button>Helpline</button>
-            </div>
+    <!-- Modals -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1 id="modal-title"></h1>
+            <img id="modal-image" src="./image-20240611T034251Z-001/image/m9.png" alt="">
+            <p id="modal-description"></p>
+            <span id="modal-price"></span>
+        </div>
+    </div>
 
-            <div class="icons">
-                <div class="fa fa-search" id="search-btn"></div>
-                <div class="fa fa-shopping-cart" id="cart-btn"></div>
-                <div class="fa fa-upload" id="up-btn"></div>
-            </div>
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Shopping Cart</h1>
+            <div id="cart-items"></div>
+            <button id="buy-btn">Buy Items</button>
+        </div>
+        
+    </div>
 
-            <form class="search-form">
-                <input type="search" id="search-box" placeholder="Type Something...">
-                <label for="search-box" class="fa fa-search"></label>
-            </form>
+    <script src="main.js"></script>
+    <style>
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+}
 
-            <div class="shopping-cart">
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+}
 
-                <div class="box">
-                    <img src="image-20240611T034251Z-001/image/m10.png" alt="">
-                    <i class='bx bx-trash'></i>
-                    <div class="content">
-                        <h1>Immunity Tablets 60's</h1>
-                        <span class="price">k20.00</span>
-                    </div>
-                </div>
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-                <div class="box">
-                    <img src="image-20240611T034251Z-001/image/m2.png" alt="">
-                    <i class='bx bx-trash'></i>
-                    <div class="content">
-                        <h1>Sunscreen</h1>
-                        <span class="price">k15.00</span>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="image-20240611T034251Z-001/image/m4.png" alt="">
-                    <i class='bx bx-trash'></i>
-                    <div class="content">
-                        <h1>Moisturizer Cream</h1>
-                        <span class="price">k30.00</span>
-                    </div>
-                </div>
-
-
-            </div>
-
-            <div class="upload-form">
-                <input class="default-btn" type="file" hidden>
-                <div class="btn">
-                    <button onclick="active()" class="custom-bt">Upload Prescription</button>
-                </div>
-                <div class="file-name">No file Chosen</div>
-            </div>
-        </header>
-
-        <section class="top" id="top">
-            <div class="container">
-                <h1 class="heading">WELLNESS</h1><hr>
-            </div>
-
-            <div class="box-container">
-                <div class="box">
-                    <div class="slide-img">
-                        <img src="image-20240611T034251Z-001/image/m7.png" alt="">
-                        <div class="overlay">
-                            <p>It is a one of its kind hygiene product that kills 99.99% germs. It also keeps your hands soft and Moisturized.</p>
-                            <a href="#" class="learn-btn">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                    </div>
-
-                    <div class="detail-box">
-                        <div class="type">
-                            <a href="#">Hand Sanitizer 500ml</a>
-                            <span>New arrived</span>
-                        </div>
-                        
-                        <a href="#" class="price">K30</a>
-                    </div>
-
-                    <a href="#" class="my-button" title="b-title">Order Now</a>
-                    <a href="#" class="my-button" title="b-title">Add to cart</a>
-
-                </div>
-
-                <div class="box">
-                    <div class="slide-img">
-                        <img src="image-20240611T034251Z-001/image/m3.png" alt="">
-                        <div class="overlay">
-                            <p>Advanced formula facilitates deep cleansing to help make your scalp fight dandruft and itchness</p>
-                            <a href="#" class="learn-btn">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                    </div>
-
-                    <div class="detail-box">
-                        <div class="type">
-                            <a href="#">Shampoo and Conditioner 180ml</a>
-                            <span>New arrived</span>
-                        </div>
-                        
-                        <a href="#" class="price">K35</a>
-                    </div>
-
-                    <a href="#" class="my-button" title="b-title">Order Now</a>
-                    <a href="#" class="my-button" title="b-title">Add to cart</a>
-
-                </div>
-
-                <div class="box">
-                    <div class="slide-img">
-                        <img src="image-20240611T034251Z-001/image/m4.png" alt="">
-                        <div class="overlay">
-                            <p>Keratolytic qualities of moisturex cream can smoothe rough, scaly skin. It makes the skin healthly, fully protected skin and shiny</p>
-                            <a href="#" class="learn-btn">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                    </div>
-
-                    <div class="detail-box">
-                        <div class="type">
-                            <a href="#">Moisturizer Cream 100gm</a>
-                            <span>New arrived</span>
-                        </div>
-                        
-                        <a href="#" class="price">K30</a>
-                    </div>
-
-                    <a href="#" class="my-button" title="b-title">Order Now</a>
-                    <a href="#" class="my-button" title="b-title">Add to cart</a>
-
-                </div>
-
-                <div class="box">
-                    <div class="slide-img">
-                        <img src="image-20240611T034251Z-001/image/m5.png" alt="">
-                        <div class="overlay">
-                            <p>Provide protection against germs, it has triclosan that helps to keep your body clean and protected</p>
-                            <a href="#" class="learn-btn">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                    </div>
-
-                    <div class="detail-box">
-                        <div class="type">
-                            <a href="#">Anti Bacterial Soap 75gm</a>
-                            <span>New arrived</span>
-                        </div>
-                        
-                        <a href="#" class="price">K30</a>
-                    </div>
-
-                    <a href="#" class="my-button" title="b-title">Order Now</a>
-                    <a href="#" class="my-button" title="b-title">Add to cart</a>
-
-                </div>
-
-
-            </div>
-        </section>
-
-
-
-
-        <section class="bottom" id="bottom">
-            <div class="container">
-                <h1 class="heading">MEDICINE</h1><hr>
-            </div>
-
-            <div class="box-container">
-                <div class="box">
-                    <div class="slide-img">
-                        <img src="image-20240611T034251Z-001/image/m8.png" style="width: 90%; padding-left: 15%;" alt="">
-                        <div class="overlay">
-                            <p>Fever and pain, tonsilitis, upper respiratory tract infection,Post-Immunization reactions</p>
-                            <a href="#" class="learn-btn">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                    </div>
-
-                    <div class="detail-box">
-                        <div class="type">
-                            <a href="#">Paracetamol 15gm</a>
-                            <span>New arrived</span>
-                        </div>
-                        
-                        <a href="#" class="price">K5</a>
-                    </div>
-
-                    <a href="#" class="my-button" title="b-title">Order Now</a>
-                    <a href="#" class="my-button" title="b-title">Add to cart</a>
-
-                </div>
-
-                <div class="box">
-                    <div class="slide-img">
-                        <img src="image-20240611T034251Z-001/image/m9.png" alt="">
-                        <div class="overlay">
-                            <p>Maintain levels of he vitamin D3 in your body, Maintain healthly bones and teeth</p>
-                            <a href="#" class="learn-btn">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                    </div>
-
-                    <div class="detail-box">
-                        <div class="type">
-                            <a href="#">Vitamin D3 Tablet 10's</a>
-                            <span>New arrived</span>
-                        </div>
-                        
-                        <a href="#" class="price">K8</a>
-                    </div>
-
-                    <a href="#" class="my-button" title="b-title">Order Now</a>
-                    <a href="#" class="my-button" title="b-title">Add to cart</a>
-
-                </div>
-
-                <div class="box">
-                    <div class="slide-img">
-                        <img src="image-20240611T034251Z-001/image/m10.png" alt="">
-                        <div class="overlay">
-                            <p>Strengthens body's defense system agaonst cols cough helps the body to fight against seasonal viral infections</p>
-                            <a href="#" class="learn-btn">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                    </div>
-
-                    <div class="detail-box">
-                        <div class="type">
-                            <a href="#">Immunity Tablet 60's</a>
-                            <span>New arrived</span>
-                        </div>
-                        
-                        <a href="#" class="price">K25</a>
-                    </div>
-
-                    <a href="#" class="my-button" title="b-title">Order Now</a>
-                    <a href="#" class="my-button" title="b-title">Add to cart</a>
-
-                </div>
-
-                <div class="box">
-                    <div class="slide-img">
-                        <img src="image-20240611T034251Z-001/image/m11.png" alt="">
-                        <div class="overlay">
-                            <p>Helps in the management of normalizing insulin function, Boost immne system, Maintains blood sugar level</p>
-                            <a href="#" class="learn-btn">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                    </div>
-
-                    <div class="detail-box">
-                        <div class="type">
-                            <a href="#">Diabetes Tablet 10's</a>
-                            <span>New arrived</span>
-                        </div>
-                        
-                        <a href="#" class="price">K15</a>
-                    </div>
-
-                    <a href="#" class="my-button" title="b-title">Order Now</a>
-                    <a href="#" class="my-button" title="b-title">Add to cart</a>
-
-                </div>
-
-
-            </div>
-        </section>
-
-        <script type="text/javascript" src="main.js"></script>
-    </body>
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+    </style>
+</body>
 </html>

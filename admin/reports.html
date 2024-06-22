@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .top {
+            background-color: #d87af0;
+            padding: 20px;
+            text-align: center;
+        }
+        .box-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 1.5rem;
+            padding: 6rem;
+        }
+        .box {
+            height: 100%;
+            width: 100%;
+            padding: 3rem 2rem;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        button {
+            padding: 10px 45px;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            border: none;
+            background-image: linear-gradient(to right,#649bff,#0070fa,#649bff);
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <section class="top" id="top">
+        <div class="container">
+            <h1 class="heading">REPORTS</h1>
+            <hr>
+        </div>
+        <div class="box-container">
+            <div class="box">
+                <button onclick="openModal('bestSellingDrugsModal')">Best Selling Drugs</button>
+            </div>
+            <div class="box">
+                <button onclick="openModal('bestPharmaciesModal')">Best Pharmacies</button>
+            </div>
+            <div class="box">
+                <button onclick="openModal('doctorsModal')">All Doctors</button>
+            </div>
+            <div class="box">
+                <button onclick="openModal('patientsModal')">All Patients</button>
+            </div>
+            <div class="box">
+                <button onclick="openModal('pharmaciesModal')">All Pharmacies</button>
+            </div>
+            <div class="box">
+                <button onclick="openModal('pharmaceuticalCompaniesModal')">All Pharmaceutical Companies</button>
+            </div>
+        </div>
+        <div id="bestSellingDrugsModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('bestSellingDrugsModal')">&times;</span>
+                <h2>Best Selling Drugs</h2>
+                <table id="bestSellingDrugsTable">
+                    <thead>
+                        <tr>
+                            <th>Drug Name</th>
+                            <th>Unit Price</th>
+                            <th>Units Sold</th>
+                            <th>Sales Income</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="bestPharmaciesModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('bestPharmaciesModal')">&times;</span>
+                <h2>Best Pharmacies</h2>
+                <table id="bestPharmaciesTable">
+                    <thead>
+                        <tr>
+                            <th>Pharmacy Name</th>
+                            <th>Order Count</th>
+                            <th>Revenue generated</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="doctorsModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('doctorsModal')">&times;</span>
+                <h2>All Doctors</h2>
+                <table id="doctorsTable">
+                    <thead>
+                        <tr>
+                            <th>SSN</th>
+                            <th>Specialty</th>
+                            <th>Years of Experience</th>
+                            <th>User ID</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="patientsModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('patientsModal')">&times;</span>
+                <h2>All Patients</h2>
+                <table id="patientsTable">
+                    <thead>
+                        <tr>
+                            <th>SSN</th>
+                            <th>Address</th>
+                            <th>Age</th>
+                            <th>Primary Physician SSN</th>
+                            <th>User ID</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="pharmaciesModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('pharmaciesModal')">&times;</span>
+                <h2>All Pharmacies</h2>
+                <table id="pharmaciesTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="pharmaceuticalCompaniesModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('pharmaceuticalCompaniesModal')">&times;</span>
+                <h2>All Pharmaceutical Companies</h2>
+                <table id="pharmaceuticalCompaniesTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Registered On</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Add Doctors Section -->
+        <div class="add-doctors">
+            <h2>Add Doctors</h2>
+            <form id="add-doctor-form">
+                <label for="doctor-ssn">SSN:</label>
+                <input type="text" id="doctor-ssn" name="ssn"><br><br>
+                <label for="doctor-specialty">Specialty:</label>
+                <input type="text" id="doctor-specialty" name="specialty"><br><br>
+                <label for="doctor-years-of-experience">Years of Experience:</label>
+                <input type="number" id="doctor-years-of-experience" name="years_of_experience"><br><br>
+                <label for="doctor-userid">User ID:</label>
+                <input type="text" id="doctor-userid" name="userid"><br><br>
+                <button type="submit">Add Doctor</button>
+            </form>
+        </div>
+        <!-- Add Pharmacies Section -->
+        <div class="add-pharmacies">
+            <h2>Add Pharmacies</h2>
+            <form id="add-pharmacy-form">
+                <label for="pharmacy-name">Name:</label>
+                <input type="text" id="pharmacy-name" name="name"><br><br>
+                <label for="pharmacy-address">Address:</label>
+                <input type="text" id="pharmacy-address" name="address"><br><br>
+                <label for="pharmacy-phone-number">Phone Number:</label>
+                <input type="text" id="pharmacy-phone-number" name="phone_number"><br><br>
+                <button type="submit">Add Pharmacy</button>
+            </form>
+        </div>
+        <!-- Add Pharmaceutical Companies Section -->
+        <div class="add-pharmaceutical-companies">
+            <h2>Add Pharmaceutical Companies</h2>
+            <form id="add-pharmaceutical-company-form">
+                <label for="company-name">Name:</label>
+                <input type="text" id="company-name" name="name"><br><br>
+                <label for="company-phone-number">Phone Number:</label>
+                <input type="text" id="company-phone-number" name="phone">
+                <label for="company-registered-on">Registered On:</label>
+                <input type="date" id="company-registered-on" name="registered_on"><br><br>
+                <button type="submit">Add Company</button>
+            </form>
+        </div>
+        <!-- Add Drugs Section -->
+        <div class="add-drugs">
+            <h2>Add Drugs</h2>
+            <form id="add-drug-form">
+                <label for="drug-tradename">Trade Name:</label>
+                <input type="text" id="drug-tradename" name="tradename"><br><br>
+                <label for="drug-price">Price:</label>
+                <input type="number" id="drug-price" name="price"><br><br>
+                <label for="drug-sales">Sales:</label>
+                <input type="number" id="drug-sales" name="sales"><br><br>
+                <button type="submit">Add Drug</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+            loadData(modalId);
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+        async function fetchData(endpoint) {
+            const response = await fetch(`http://localhost:3000/${endpoint}`);
+            return response.json();
+        }
+        async function loadData(modalId) {
+            let data, tableBody;
+            switch (modalId) {
+                case 'bestSellingDrugsModal':
+                    data = await fetchData('best-selling-drugs');
+                    tableBody = document.getElementById('bestSellingDrugsTable').querySelector('tbody');
+                    tableBody.innerHTML = data.map(row => `
+                        <tr>
+                            <td>${row.tradename}</td>
+                            <td>K${row.price}</td>
+                            <td>${row.sales}</td>
+                            <td>K${row.income}</td>
+                        </tr>
+                    `).join('');
+                    break;
+                case 'bestPharmaciesModal':
+                    data = await fetchData('best-pharmacies');
+                    tableBody = document.getElementById('bestPharmaciesTable').querySelector('tbody');
+                    tableBody.innerHTML = data.map(row => `
+                        <tr>
+                            <td>${row.name}</td>
+                            <td>${row.ordercount}</td>
+                            <td>${row.income}</td>
+                        </tr>
+                    `).join('');
+                    break;
+                case 'doctorsModal':
+                    data = await fetchData('best-doctors');
+                    tableBody = document.getElementById('doctorsTable').querySelector('tbody');
+                    tableBody.innerHTML = data.map(row => `
+                        <tr>
+                            <td>${row.ssn}</td>
+                            <td>${row.specialty}</td>
+                            <td>${row.yearsofexperience}</td>
+                            <td>${row.userid}</td>
+                        </tr>
+                    `).join('');
+                    break;
+                case 'patientsModal':
+                    data = await fetchData('patients');
+                    tableBody = document.getElementById('patientsTable').querySelector('tbody');
+                    tableBody.innerHTML = data.map(row => `
+                        <tr>
+                            <td>${row.ssn}</td>
+                            <td>${row.address}</td>
+                            <td>${row.age}</td>
+                            <td>${row.primaryphysicianssn}</td>
+                            <td>${row.userid}</td>
+                        </tr>
+                    `).join('');
+                    break;
+                case 'pharmaciesModal':
+                    data = await fetchData('pharmacies');
+                    tableBody = document.getElementById('pharmaciesTable').querySelector('tbody');
+                    tableBody.innerHTML = data.map(row => `
+                        <tr>
+                            <td>${row.name}</td>
+                            <td>${row.address}</td>
+                            <td>${row.phonenumber}</td>
+                        </tr>
+                    `).join('');
+                    break;
+                case 'pharmaceuticalCompaniesModal':
+                    data = await fetchData('pharmaceutical-companies');
+                    tableBody = document.getElementById('pharmaceuticalCompaniesTable').querySelector('tbody');
+                    tableBody.innerHTML = data.map(row => `
+                        <tr>
+                            <td>${row.name}</td>
+                            <td>${row.phonenumber}</td>
+                            <td>${row.registered_on}</td>
+                        </tr>
+                    `).join('');
+                    break;
+                default:
+                    console.error(`Unknown modal ID: ${modalId}`);
+            }
+        }
+        document.getElementById('add-doctor-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const ssn = document.getElementById('doctor-ssn').value;
+            const specialty = document.getElementById('doctor-specialty').value;
+            const yearsOfExperience = document.getElementById('doctor-years-of-experience').value;
+            const userid = document.getElementById('doctor-userid').value;
+            const data = await fetchData('add-doctor', { ssn, specialty, yearsOfExperience, userid });
+            console.log(data);
+        });
+        document.getElementById('add-pharmacy-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('pharmacy-name').value;
+            const address = document.getElementById('pharmacy-address').value;
+            const phoneNumber = document.getElementById('pharmacy-phone-number').value;
+            const data = await fetchData('add-pharmacy', { name, address, phoneNumber });
+            console.log(data);
+        });
+        document.getElementById('add-pharmaceutical-company-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('company-name').value;
+            const phoneNumber = document.getElementById('company-phone-number').value;
+            const registeredOn = document.getElementById('company-registered-on').value;
+            const data = await fetchData('add-pharmaceutical-company', { name, phoneNumber, registeredOn });
+            console.log(data);
+        });
+        document.getElementById('add-drug-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const tradename = document.getElementById('drug-tradename').value;
+            const price = document.getElementById('drug-price').value;
+            const sales = document.getElementById('drug-sales').value;
+            const data = await fetchData('add-drug', { tradename, price, sales });
+            console.log(data);
+        });
+    </script>
+</html>
